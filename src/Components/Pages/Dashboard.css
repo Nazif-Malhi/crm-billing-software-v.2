@@ -1,0 +1,30 @@
+.dasboard{
+    margin-top: 10px;
+    background-color: #EFEFEF;
+    overflow-x: hidden; /* Hide horizontal scrollbar */
+
+  }
+  
+  .topHeader{
+    display: grid;
+  }
+  
+  
+  .dasboard .bottomFooter .upper {
+    width: 98%;
+  }
+  
+  .dasboard .bottomFooter .seprator{
+    height: 80px;
+  }
+  
+  
+  .dasboard .bottomFooter .yearlyrep {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-top: 50px;
+  }
+ .lefttPaddCont{
+     padding-left: 5px;
+ }  

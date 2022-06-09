@@ -1,0 +1,106 @@
+/* width */
+::-webkit-scrollbar {
+    width: 3px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 3px grey; 
+    border-radius: 3px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #1E90FF; 
+    border-radius: 3px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #0d5297; 
+  }
+.side-menue{
+    position: fixed;
+    background-color: white;
+    width: 260px;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 30px 20px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+
+    transition:width .2s ease-in-out ;
+}
+
+.side-menue.inactive{
+    width: 75px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.side-menue .topSection {
+    position: relative;
+}
+
+.side-menue .topSection .toggle-menue{
+display: inline;
+position: absolute;
+top: 50%;
+right: 0;
+transform: translateY(-50%);
+cursor: pointer;
+}
+
+.side-menue.inactive .topSection .toggle-menue{
+    /* right: -50px; */
+    
+    transition: .2s ease-in-out;
+    cursor: pointer;
+}
+
+.side-menue .search-controller{
+    position: relative;
+    
+}
+
+.side-menue .search-controller .btn-search{
+    height: 35px;
+    width: 35px;
+    position: absolute;
+    background: #1E90FF;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    right: 0;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.side-menue.inactive .search-controller .btn-search{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.side-menue .search-controller input[type=text]{
+    border: 0;
+    outline: none;
+    height: 35px;
+    background: #F1EFF6;
+    border-radius: 5px;
+    display: block;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 20px;
+}
+
+.side-menue .divider{
+    width: 100%;
+    height: 1px;
+    border-radius: 1px;
+    background: #F1EFF6;
+}
