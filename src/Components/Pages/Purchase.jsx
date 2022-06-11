@@ -1,6 +1,8 @@
 import React from 'react'
 import PurchaseForm from '../Forms/PurchaseForm'
 import UpperNavbar from '../Navbars/UpperNavbar'
+import PurchaseListTable from "../Tables/PurchaseListTable";
+
 
 export const AddPurchase = () => {
   return (<>
@@ -14,6 +16,9 @@ export const AddPurchase = () => {
 
 export const PurchaseList = () => {
     return(
-        <div className="Purchase">Purchase List</div>
+        <div className="Purchase">Purchase List
+        <PurchaseListTable/>
+        </div>
+        
     )
 }

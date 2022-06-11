@@ -6,7 +6,8 @@ import {MdOutlineImportExport} from 'react-icons/md';
 import UpperNavbar from '../Navbars/UpperNavbar';
 import ImportingModals from '../Modals/ImportingModals';
 import { AddExpenseCategoryModal, AddExpenseModal } from '../Modals/ExpenseModal';
-
+import ExpenseCategoryTable from "../Tables/ExpenseCategoryTable";
+import Ss from '../Tables/Ss';
 export const AddExpenseCategory = () => {
   const [showImport, setShowImport] = useState(false);
     const [showAddModal, setShowAddModal] = useState(false);
@@ -45,6 +46,9 @@ export const AddExpenseCategory = () => {
         onHide = {hideModalAdd}
         />
         </div>
+        <ExpenseCategoryTable/>
+        
+        {/* <Ss/> */}
         </div>
   </>)
 }

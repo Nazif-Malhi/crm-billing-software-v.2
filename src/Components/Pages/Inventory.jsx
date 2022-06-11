@@ -6,8 +6,8 @@ import {MdOutlineImportExport} from 'react-icons/md';
 import UpperNavbar from '../Navbars/UpperNavbar';
 import ImportingModals from '../Modals/ImportingModals';
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
-
-
+import ProductTable from "../Tables/ProductTable";
+import InventoryCategoryTable from "../Tables/InventoryCategoryTable";
 
 
 // Category 
@@ -25,7 +25,7 @@ export const Category = () => {
 
   return (<>
     <UpperNavbar/>
-    <div className='main_container' style={{padding:10}}>
+    <div className='main_container' style={{padding:40}}>
       <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
         <Stack spacing={2} direction="row">
             <ButtonR variant="contained" startIcon={<IoMdAdd />} onClick = {() => setShowAddModal(!showAddModal)}>
@@ -50,6 +50,7 @@ export const Category = () => {
         onHide = {hideModalAdd}
         />
       </div>
+      <InventoryCategoryTable/>
     </div>
   </>)
 }
@@ -70,7 +71,7 @@ export const Product = () => {
     }
   return (<>
   <UpperNavbar/>
-      <div className='main_container' style={{padding:10}}>
+      <div className='main_container' style={{padding:40}}>
         <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
             <Stack spacing={2} direction="row">
                 <ButtonR variant="contained" startIcon={<IoMdAdd />} onClick = {() => setShowAddModal(!showAddModal)}>
@@ -93,6 +94,8 @@ export const Product = () => {
             onHide = {hideModalAdd}
             />
             </div>  
+            <ProductTable/>           
         </div>
+
   </>)
 }
