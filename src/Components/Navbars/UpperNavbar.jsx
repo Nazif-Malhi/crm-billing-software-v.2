@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 import styledComponents from "styled-components";
+import {useNavigate } from 'react-router-dom';
+
 
 //icons
 import {FaUserAlt} from 'react-icons/fa';
@@ -8,7 +10,10 @@ import {IoNotifications} from 'react-icons/io5';
 import {CgShoppingBag} from 'react-icons/cg';
 
 //Components
-import  Button  from '@mui/material/Button';
+
+
+import Stack from '@mui/material/Stack';
+import ButtonR from '@mui/material/Button';
 
 
 
@@ -47,23 +52,67 @@ const NotificationBtn = styledComponents.div`
 
 `;
 
-const UpperNavbar = () => {
-  return (
-    <UpperNavbarItems>
-    <div className="image_upperNavbar">
-        
-    </div>
-    
-       
 
-    <div className="notification_button">
-    </div>
-    <MenueUpperNav>
-    <Button variant='outlined' startIcon={<CgShoppingBag/>}>POS</Button>
-    <NotificationBtn><IoNotifications style={styleOfIcon}/></NotificationBtn> 
-    <Button variant='contained' startIcon = { <FaUserAlt/>} endIcon = {<AiOutlineDown/>}>Admin</Button>
-    </MenueUpperNav>
-</UpperNavbarItems> 
+const UpperNavbar = (
+  {
+    handleUpperNav,
+    upperNav,
+    setState,
+    inactive,
+  }
+  ) => {
+  
+  const navigate = useNavigate();
+
+  const navigateToPOS = () => {
+    navigate('/pos');
+    handleUpperNav();
+    if(upperNav === 'contained' && inactive === false){
+    setState();
+    }
+     
+  }
+    const [disabledStandards , setDisabledStandards] = useState(false);
+    const [disabledServices , setDisabledServices] = useState(false);
+ 
+  function forServicesEnable(){
+    setDisabledStandards(false);
+    setDisabledServices(true)
+  }
+  function forStandardEnable(){
+    setDisabledStandards(true);
+    setDisabledServices(false)
+  }
+  
+  const UpperButtons = () => {
+    return(
+      <div className="paddingRight" style= {{paddingRight:'40px'}}>
+        <Stack spacing={2} direction="row">
+            <ButtonR variant="contained" disabled={disabledStandards} onClick = {forStandardEnable} style={{backgroundColor:"#059BFF"}}>
+                Standards
+            </ButtonR>
+            <ButtonR variant="contained" disabled={disabledServices} onClick = {forServicesEnable} style = {{backgroundColor:"#FF4069"}}>
+                Services
+            </ButtonR>
+        </Stack>
+        </div>
+    )
+  }
+  return (<>
+    <UpperNavbarItems>
+      <div className="image_upperNavbar">
+      </div>
+      <div className="notification_button">
+      </div>
+      
+      <MenueUpperNav>
+      {upperNav === 'outlined' ? <UpperButtons/> : null}
+      <ButtonR variant={upperNav} startIcon={<CgShoppingBag/>} onClick={navigateToPOS}>POS</ButtonR>
+      <NotificationBtn><IoNotifications style={styleOfIcon}/></NotificationBtn> 
+      <ButtonR variant='contained' startIcon = { <FaUserAlt/>} endIcon = {<AiOutlineDown/>}>Admin</ButtonR>
+      </MenueUpperNav>
+    </UpperNavbarItems>
+</>
   )
 }
 

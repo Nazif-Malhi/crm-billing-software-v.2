@@ -59,17 +59,27 @@ color:#252933;
  
 `;
 
-const SideNavbarMenue = ({item}) => {
-
+const SideNavbarMenue = ({item ,
+    handleSideNav,
+    upperNav
+}) => {
     const [subnav, setSubnav] = useState(false);
-    const showSubNav = () => setSubnav(!subnav);
+    const showSubNav = () => {
+        setSubnav(!subnav);
+    }
+    
+    const alerting = () => {
+         if(upperNav !== 'contained'){
+        handleSideNav();
+         }
+    }
     
     return (
             <>
             <IconContext.Provider value={{ color: "#1E90FF"}}>
-            <SidebarLink to = {item.path} onClick={item.subNav && showSubNav  }>
+            <SidebarLink to = {item.path} onClick={item.subNav && showSubNav }>
                 <div >
-                 <div className="iconup">
+                 <div className="iconup" onClick={alerting}>
                     {item.icon}
                     <SidebarLabel>{item.title}</SidebarLabel>
                     </div>

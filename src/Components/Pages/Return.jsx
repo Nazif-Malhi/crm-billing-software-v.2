@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import Stack from '@mui/material/Stack';
 import ButtonR from '@mui/material/Button';
 import {IoMdAdd} from 'react-icons/io';
-import UpperNavbar from '../Navbars/UpperNavbar';
 import ReturnPurchaseModals, { ReturnSalesModal } from '../Modals/ReturnModals';
 
 
@@ -15,7 +14,6 @@ export const ReturnSale = () => {
     }
 
   return (<>
-  <UpperNavbar/>
   <div className='main_container' style={{padding:10}}>
       <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
         <Stack spacing={2} direction="row">
@@ -39,7 +37,6 @@ export const ReturnPurchase = () => {
         setShowAddModal(false);
       }
     return (<>
-          <UpperNavbar/>
   <div className='main_container' style={{padding:10}}>
       <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
         <Stack spacing={2} direction="row">

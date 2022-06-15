@@ -2,13 +2,11 @@ import React, {useState} from 'react';
 import Stack from '@mui/material/Stack';
 import ButtonR from '@mui/material/Button';
 import {IoMdAdd} from 'react-icons/io';
-import UpperNavbar from '../Navbars/UpperNavbar';
 import ImportingModals from '../Modals/ImportingModals';
 import QuotationForm from '../Forms/QuotationForm';
 
 export const AddQuotation = () => {
   return (<>
-   <UpperNavbar/>
     <div className="Forms"  style={{padding:'20px' , paddingTop:'60px'}}>
         {/* Form */}
     <QuotationForm/>
@@ -25,7 +23,6 @@ export const QuotationList = () => {
         setShowImport(false);
     }
   return (<>
-  <UpperNavbar/>
   <div className='main_container' style={{padding:10}}>
         <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
             <Stack spacing={2} direction="row">

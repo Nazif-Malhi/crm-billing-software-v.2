@@ -9,19 +9,28 @@ import { AddExpense, AddExpenseCategory } from "./Components/Pages/Expense";
 import { AddQuotation, QuotationList } from "./Components/Pages/Quotation";
 import { ReturnPurchase, ReturnSale } from "./Components/Pages/Return";
 import { Customer, Supplier } from "./Components/Pages/People";
+import Pos from "./Components/Modals/Pos";
 
 
 function App() {
   const [inactive, setInactive] = useState(false);
+  
   return (<div className="app">
     <Router>
-      <SideMenue
+    
+    <SideMenue
        onCollapse={(inactive) => {
         setInactive(inactive);
         }}
       />
+    {/* Outside the upper Navbar for triggering the sidenavbar inactive value  */}
+    
     
     <div className={`conatinerOfApp ${inactive ? "inactiveconatinerOfApp" : ""}`}>
+    
+    
+
+      {/* Routing */}
       <Routes>
         {/* Dashboard Route with the the path of URL  */}
         <Route  path={"/dashboard"} element={<Dashboard/>}/>
@@ -52,6 +61,8 @@ function App() {
          <Route path={"/people/customer"} element={<Customer/>}/>
          <Route path = {"/people/supplier"} element = {<Supplier/>}/>
 
+         {/* Pos Route */}
+         <Route path={"/pos"} element = {<Pos/>}/>
       </Routes>
 
     </div>
