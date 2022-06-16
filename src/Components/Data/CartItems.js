@@ -2,7 +2,7 @@ export const  CartItems = [
     {title: 'Mouse' , price: '1200'},
     {title: 'Apple' , price: '1200'},
     {title: 'Laptop' , price: '1200'},
-    {title: 'Keyboardjjjjjjjjjjjjjjj' , price: '1200'},
+    {title: 'Keyboard jjjjjjjjjj' , price: '1200'},
     {title: 'Phone' , price: '1200'},
     {title: 'Fan' , price: '1200'},
     {title: 'Lighht' , price: '1200'},
