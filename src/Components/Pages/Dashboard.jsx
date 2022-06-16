@@ -1,5 +1,4 @@
 import React from 'react';
-import UpperNavbar from '../Navbars/UpperNavbar';
 import { BarChart, DoughnutChart, PolarAreaChart, PieChart, LineChart } from '../Charts/Charts';
 import '../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './Dashboard.css';
@@ -8,7 +7,7 @@ import SaleCard from '../Cards/SaleCard';
 
 
 const Dashboard = () => {
-  return (<><UpperNavbar/>
+  return (<>
   <div className="dasboard">
             <div className="topHeader">
                 <div className="lefttPaddCont">
