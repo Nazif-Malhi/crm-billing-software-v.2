@@ -262,7 +262,7 @@ export const AddProductModal = ({
         </Col>
         <Col xs={6} md={4}>
         <h6>Product Name*</h6>
-            <TextField id="outlined-basic" label="Product Name" variant="outlined" size="small" style={{width:220}}/>
+            <TextField id="outlined-basic" label=" " variant="outlined" size="small" style={{width:220}}/>
         </Col>
         <Col xs={6} md={4}>
           <h6>Product Code</h6>

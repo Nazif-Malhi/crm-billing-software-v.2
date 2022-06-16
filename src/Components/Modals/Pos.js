@@ -7,14 +7,7 @@ import ItemsCard from '../Cards/ItemsCard';
 import { TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import {BsSearch } from 'react-icons/bs'
-import { CartItems } from '../Data/CartItems';
-
-
-
-
-const Right = styled.div`
- border : 1px solid darkgrey;
-`;
+import { CartItems, proItems } from '../Data/CartItems';
 
 const styleOfBase = {
   overflowY: 'scroll',
@@ -43,7 +36,7 @@ const styleofPanOf = {
   transition: '.2s ease-in-out'
 }
 
-const LoadListContainer = () => {
+const LoadListCategory = () => {
   return(<> <div className='base' style={styleOfBase }>
   <Col>
   <Row style = {{justifyContent : 'center'}}>
@@ -55,8 +48,33 @@ const LoadListContainer = () => {
   </div>
   </>)
 }
+
+const LoadListProduct = () => {
+  return(<> <div className='base' style={styleOfBase }>
+  <Col>
+  <Row style = {{justifyContent : 'center'}}>
+  {proItems.map((item, index) => {
+    return <ItemsCard item = {item} index = {index}/>
+  })}
+  </Row>
+  </Col>
+  </div>
+  </>)
+}
+
 const Pos = () => {
   const [toggleAnimation , setToggleAnimation] = useState(false);
+  const [list , setList] = useState('cat');
+  const changeHandle = () => {
+    setToggleAnimation(true)
+    if(list === 'cat'){
+      setList('pro');
+    }
+    else{
+      setList('cat');
+    }
+  }
+  
   return (<>
     <div className='posContainer' style={{overflowX:'hidden'}}>
       <Row>
@@ -67,13 +85,17 @@ const Pos = () => {
         <div className='center' style  = {{textAlign:'center'}}>
         <Stack spacing={2} direction="row" style={{justifyContent : "center", paddingTop: '10px' , paddingBottom:'10px'}}>
             <Button variant="contained" style={{backgroundColor:"#059BFF" , width:'200px'}}
-              onClick = {()=> setToggleAnimation(true)}
+              onClick = {changeHandle}
               onAnimationEnd = {() => setToggleAnimation(false)}
               toggleAnimation = {toggleAnimation}
               >
                 Category
             </Button>
-            <Button variant="contained" style = {{backgroundColor:"#FF4069" , width:'200px'}}>
+            <Button variant="contained" style = {{backgroundColor:"#FF4069" , width:'200px'}}
+            onClick = {changeHandle}
+            onAnimationEnd = {() => setToggleAnimation(false)}
+            toggleAnimation = {toggleAnimation}
+            >
                 Brand
             </Button>
         </Stack>
@@ -92,7 +114,7 @@ const Pos = () => {
             />
         </div>
         <div className = 'panContainer' style = {toggleAnimation ? styleofPanOf : styleofPanOn}>
-        <LoadListContainer/>
+        {list === 'cat' ? <LoadListCategory/> : <LoadListProduct/>}
         </div>
         </Col>
       </Row>
