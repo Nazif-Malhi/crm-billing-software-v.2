@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Row , Col , Container } from 'react-bootstrap';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
@@ -7,14 +7,6 @@ import ItemsCard from '../Cards/ItemsCard';
 import { TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import {BsSearch } from 'react-icons/bs'
-
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import { CartItems } from '../Data/CartItems';
 
 
@@ -26,89 +18,29 @@ const Right = styled.div`
 
 const styleOfBase = {
   overflowY: 'scroll',
-  whiteSpace: 'nowrap',
-  margin: '10px',
+  whiteSpace: 'break-spaces',
+  marginTop:'15px',
+  marginRight: '10px',
   textAlign: 'justify',
-  padding: '10px',
-  height:'79vh',
+  height:'70vh',
   overflowX:'hidden'
 }
 
-const TAX_RATE = 0.07;
-
-function ccyFormat(num) {
-  return `${num.toFixed(2)}`;
+const styleofPanOn = {
+  background : '#F1EFF6',
+  height:'75vh',
+  float:'right',
+  borderRadius:'8px',
+  width:'100%',
+  transition: '.2s ease-in-out'
 }
-
-function priceRow(qty, unit) {
-  return qty * unit;
-}
-
-function createRow(desc, qty, unit) {
-  const price = priceRow(qty, unit);
-  return { desc, qty, unit, price };
-}
-
-function subtotal(items) {
-  return items.map(({ price }) => price).reduce((sum, i) => sum + i, 0);
-}
-
-const rows = [
-  createRow('Paperclips (Box)', 100, 1.15),
-  createRow('Paper (Case)', 10, 45.99),
-  createRow('Waste Basket', 2, 17.99),
-];
-
-const invoiceSubtotal = subtotal(rows);
-const invoiceTaxes = TAX_RATE * invoiceSubtotal;
-const invoiceTotal = invoiceTaxes + invoiceSubtotal;
-
-function SpanningTable() {
-  return (
-    <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 700 }} aria-label="spanning table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="center" colSpan={3}>
-              Details
-            </TableCell>
-            <TableCell align="right">Price</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Desc</TableCell>
-            <TableCell align="right">Qty.</TableCell>
-            <TableCell align="right">Unit</TableCell>
-            <TableCell align="right">Sum</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {rows.map((row) => (
-            <TableRow key={row.desc}>
-              <TableCell>{row.desc}</TableCell>
-              <TableCell align="right">{row.qty}</TableCell>
-              <TableCell align="right">{row.unit}</TableCell>
-              <TableCell align="right">{ccyFormat(row.price)}</TableCell>
-            </TableRow>
-          ))}
-
-          <TableRow>
-            <TableCell rowSpan={3} />
-            <TableCell colSpan={2}>Subtotal</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceSubtotal)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell>Tax</TableCell>
-            <TableCell align="right">{`${(TAX_RATE * 100).toFixed(0)} %`}</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTaxes)}</TableCell>
-          </TableRow>
-          <TableRow>
-            <TableCell colSpan={2}>Total</TableCell>
-            <TableCell align="right">{ccyFormat(invoiceTotal)}</TableCell>
-          </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
-  );
+const styleofPanOf = {
+  background : '#F1EFF6',
+  height:'75vh',
+  float:'right',
+  borderRadius:'8px',
+  width:'0%',
+  transition: '.2s ease-in-out'
 }
 
 const LoadListContainer = () => {
@@ -123,60 +55,48 @@ const LoadListContainer = () => {
   </div>
   </>)
 }
-const Services = () => {
-  return(<>
-      <Stack spacing={2} direction="row" style={{justifyContent : "center", paddingTop: '20px'}}>
-            <Button variant="contained" style={{backgroundColor:"#059BFF" , width:'220px'}}>
+const Pos = () => {
+  const [toggleAnimation , setToggleAnimation] = useState(false);
+  return (<>
+    <div className='posContainer' style={{overflowX:'hidden'}}>
+      <Row>
+        <Col>
+        Left
+        </Col>
+        <Col>
+        <div className='center' style  = {{textAlign:'center'}}>
+        <Stack spacing={2} direction="row" style={{justifyContent : "center", paddingTop: '10px' , paddingBottom:'10px'}}>
+            <Button variant="contained" style={{backgroundColor:"#059BFF" , width:'200px'}}
+              onClick = {()=> setToggleAnimation(true)}
+              onAnimationEnd = {() => setToggleAnimation(false)}
+              toggleAnimation = {toggleAnimation}
+              >
                 Category
             </Button>
-            <Button variant="contained" style = {{backgroundColor:"#FF4069" , width:'220px'}}>
+            <Button variant="contained" style = {{backgroundColor:"#FF4069" , width:'200px'}}>
                 Brand
             </Button>
         </Stack>
-  </>)
-}
-
-const Standards = () => {
-  return(<>
-  
-  </>)
-}
-const Pos = () => {
-  return (<>
-    {/* <Container> */}
-    <div className='posContainer' style={{overflowX:'hidden'}}>
-    <Row>
-      <Col>
-       <div className='left' style = {{background:'purple'}}>
-        {/* <SpanningTable/> */}
-       </div>
-      </Col>
-      <Col>
-       <Right>
-        {/* <Services/>
-        <div className='searchDiv' style={{textAlign : 'center' ,marginTop:'20px'}}>
-
-        <TextField id ="outlined-basics" label= "Product Code" variant='outlined' size='small' 
+        <TextField id ="outlined-basics" label= "Search" variant='outlined' size='small'
+            style = {{
+              paddingBottom:'10px',
+              width:'400px'
+            }}
             InputProps={{
               endAdornment: (
                 <InputAdornment position="end" >
-                  <BsSearch style = {{fontSize:'1rem'}}/>
+                 <BsSearch/>
                 </InputAdornment>
               )
             }}
-            />  
+            />
         </div>
-
-        <Row>
-          <Col>
-            <LoadListContainer/>
-          </Col>
-        </Row> */}
-       </Right>
-      </Col>
-    </Row>
+        <div className = 'panContainer' style = {toggleAnimation ? styleofPanOf : styleofPanOn}>
+        <LoadListContainer/>
+        </div>
+        </Col>
+      </Row>
     </div>
-    {/* </Container> */}
   </>)
 }
 
