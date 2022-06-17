@@ -15,6 +15,7 @@ const ItemsCard = ({item}) => {
         <Card.Title style = {{fontSize: '1.2vw'}}>{item.title}</Card.Title>
         <Card.Text>
          {item.price}
+         <h2>hhuyuyuy</h2>
         </Card.Text>
       </Card.Body>
     </Card>
