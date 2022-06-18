@@ -12,7 +12,7 @@ const Dashboard = () => {
             <div className="topHeader">
                 <div className="lefttPaddCont">
                 <div className="welcomecon">
-                    <h2>Welcome</h2>
+                    <h2>Welcome Admin</h2>
                 </div>
                 </div>
             </div>
