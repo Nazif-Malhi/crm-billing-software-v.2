@@ -5,7 +5,8 @@ import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
 import ImportingModals from '../Modals/ImportingModals';
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
-
+import InventoryCategoryList from "../Tables/InventoryCategoryList";
+import { Inventory } from '@mui/icons-material';
 
 
 
@@ -48,6 +49,7 @@ export const Category = () => {
         onHide = {hideModalAdd}
         />
       </div>
+      <InventoryCategoryList/>
     </div>
   </>)
 }
