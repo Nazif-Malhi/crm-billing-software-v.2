@@ -14,94 +14,56 @@ import Avatar from '@mui/material/Avatar'
 const initialRows = [
   {
       id:1,
-    Image:'ss.png',
-    
-    Category: 'food',
-    ParentCategory:"Electronics",
-    Unit:"kilo",
-    Price:120,
-    StockQuantity:123,
-    StockWorth:"100pk"
+    Code: 111,
+    Name: 'Damien',
 
   },
   {
     id:2,
-  Image:'url/sd/sds',
-  Category: 'food',
-  ParentCategory:"Electronics",
-  NumberOfStock:22,
-  StockQuantity:123,
-  StockWorth:"100pk"
+  Code: 111,
+  Name: 'Damien',
 
 },
 {
   id:3,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 {
   id:4,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 {
   id:5,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 {
-  id:6,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+  id: 111,
 
+Name: 'Sami',
+Code: 111
 },
 {
   id:7,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 {
   id:8,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 {
   id:9,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
+Code: 111,
+Name: 'Damien',
 
 },
 ];
@@ -119,7 +81,7 @@ function QuickSearchToolbar() {
           }
         />
       <GridToolbarContainer>
-        <GridToolbarExport printOptions={{ fields: ['Image', 'Name','Code','Brand','Category','Quantity','Unit','Price','Cost','StockWorth'] }} />
+        <GridToolbarExport printOptions={{ fields: [ 'Name','Code'] }} />
         {/* <GridToolbarExport /> */}
       </GridToolbarContainer>
     
@@ -145,13 +107,8 @@ const handleEditClick = (id) => () => {
   
   const columns = React.useMemo(
     () => [
-
-      { field: 'Image', type: 'string' ,headerName:"Image"},
-      { field: 'Category', type: 'string' },
-      { field: 'ParentCategory', type: 'string' },
-      { field: 'NumberOfStock', type: 'number' },
-      { field: 'StockQuantity', type: 'number' },
-      { field: 'StockWorth', type: 'string' },
+      { field: 'Code', type: 'number' },
+      { field: 'Name', type: 'string' },
       {
         field: 'actions',
         type: 'actions',
@@ -182,8 +139,8 @@ const handleEditClick = (id) => () => {
     );
 
   return (
-    <div style={{ height: 500,margin:30, paddingTop:5,width:800 }}>
-      <center><h2>Inventory Category List </h2></center>
+    <div style={{ height: 500,margin:30,width:500, paddingTop:5 }}>
+      <center><h2>Inventory Product List </h2></center>
       <DataGrid columns={columns} rows={rows} 
       checkboxSelection
       pageSize={7}

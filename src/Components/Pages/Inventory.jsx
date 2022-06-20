@@ -7,6 +7,7 @@ import ImportingModals from '../Modals/ImportingModals';
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
 import InventoryCategoryList from "../Tables/InventoryCategoryList";
 import { Inventory } from '@mui/icons-material';
+import InventoryProductList from "../Tables/InventoryProductList";
 
 
 
@@ -92,6 +93,7 @@ export const Product = () => {
             onHide = {hideModalAdd}
             />
             </div>  
+            <InventoryProductList/>
         </div>
   </>)
 }

@@ -9,100 +9,45 @@ import {
 import { GridToolbarContainer, GridToolbarExport } from '@mui/x-data-grid';
 import { MdModeEdit } from 'react-icons/md';
 import { AiOutlineDelete } from 'react-icons/ai';
-import Avatar from '@mui/material/Avatar'
+
+      
 
 const initialRows = [
   {
       id:1,
-    Image:'ss.png',
-    
-    Category: 'food',
-    ParentCategory:"Electronics",
-    Unit:"kilo",
-    Price:120,
-    StockQuantity:123,
-    StockWorth:"100pk"
-
+      customerGroup:"general",
+      customerDetails:"dhiman lioncoders dhiman@gmail.com +8801111111101 kajir deuri, chittagong ,bd",
+      discountPlan:"VIP plan",
+      rewardPoints:11,
+      depositedBalance:122,
+    totalDue:2323
   },
   {
     id:2,
-  Image:'url/sd/sds',
-  Category: 'food',
-  ParentCategory:"Electronics",
-  NumberOfStock:22,
-  StockQuantity:123,
-  StockWorth:"100pk"
-
+    customerGroup:"general",
+    customerDetails:"dhiman lioncoders dhiman@gmail.com +8801111111101 kajir deuri, chittagong ,bd",
+    discountPlan:"VIP plan",
+    rewardPoints:11,
+    depositedBalance:122,
+  totalDue:2323
 },
 {
-  id:3,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
+    id:3,
+    customerGroup:"general",
+    customerDetails:"dhiman lioncoders dhiman@gmail.com +8801111111101 kajir deuri, chittagong ,bd",
+    discountPlan:"VIP plan",
+    rewardPoints:11,
+    depositedBalance:122,
+  totalDue:2323
 },
 {
-  id:4,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
-},
-{
-  id:5,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
-},
-{
-  id:6,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
-},
-{
-  id:7,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
-},
-{
-  id:8,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
-},
-{
-  id:9,
-Image:'url/sd/sds',
-Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
-StockWorth:"100pk"
-
+    id:4,
+    customerGroup:"general",
+    customerDetails:"dhiman lioncoders dhiman@gmail.com +8801111111101 kajir deuri, chittagong ,bd",
+    discountPlan:"VIP plan",
+    rewardPoints:11,
+    depositedBalance:122,
+  totalDue:2323
 },
 ];
 
@@ -146,12 +91,12 @@ const handleEditClick = (id) => () => {
   const columns = React.useMemo(
     () => [
 
-      { field: 'Image', type: 'string' ,headerName:"Image"},
-      { field: 'Category', type: 'string' },
-      { field: 'ParentCategory', type: 'string' },
-      { field: 'NumberOfStock', type: 'number' },
-      { field: 'StockQuantity', type: 'number' },
-      { field: 'StockWorth', type: 'string' },
+      { field: 'customerGroup', type: 'string' ,headerName:"Image"},
+      { field: 'customerDetails', type: 'string' },
+      { field: 'discountPlan', type: 'string' },
+      { field: 'rewardPoints', type: 'number' },
+      { field: 'depositedBalance', type: 'number' },
+      { field: 'totalDue', type: 'number' },
       {
         field: 'actions',
         type: 'actions',
@@ -182,8 +127,8 @@ const handleEditClick = (id) => () => {
     );
 
   return (
-    <div style={{ height: 500,margin:30, paddingTop:5,width:800 }}>
-      <center><h2>Inventory Category List </h2></center>
+    <div style={{ height: 500,margin:30, paddingTop:5 }}>
+      <center><h2>Customer List </h2></center>
       <DataGrid columns={columns} rows={rows} 
       checkboxSelection
       pageSize={7}

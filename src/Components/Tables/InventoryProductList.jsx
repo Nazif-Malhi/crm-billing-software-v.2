@@ -15,92 +15,126 @@ const initialRows = [
   {
       id:1,
     Image:'ss.png',
-    
+    Name: 'Damien',
+    Code: 111,
+    Brand:'Lux',
     Category: 'food',
-    ParentCategory:"Electronics",
+    Quantity:2,
     Unit:"kilo",
     Price:120,
-    StockQuantity:123,
+    Cost:123,
     StockWorth:"100pk"
 
   },
   {
     id:2,
   Image:'url/sd/sds',
+  Name: 'Damien',
+  Code: 111,
+  Brand:'Lux',
   Category: 'food',
-  ParentCategory:"Electronics",
-  NumberOfStock:22,
-  StockQuantity:123,
+  Quantity:2,
+  Unit:"kilo",
+  Price:120,
+  Cost:123,
   StockWorth:"100pk"
 
 },
 {
   id:3,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:4,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:5,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:6,
 Image:'url/sd/sds',
+Name: 'Sami',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:7,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:8,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
 {
   id:9,
 Image:'url/sd/sds',
+Name: 'Damien',
+Code: 111,
+Brand:'Lux',
 Category: 'food',
-ParentCategory:"Electronics",
-NumberOfStock:22,
-StockQuantity:123,
+Quantity:2,
+Unit:"kilo",
+Price:120,
+Cost:123,
 StockWorth:"100pk"
 
 },
@@ -147,10 +181,14 @@ const handleEditClick = (id) => () => {
     () => [
 
       { field: 'Image', type: 'string' ,headerName:"Image"},
+      { field: 'Name', type: 'string' },
+      { field: 'Code', type: 'number' },
+      { field: 'Brand', type: 'string' },
       { field: 'Category', type: 'string' },
-      { field: 'ParentCategory', type: 'string' },
-      { field: 'NumberOfStock', type: 'number' },
-      { field: 'StockQuantity', type: 'number' },
+      { field: 'Quantity', type: 'number' },
+      { field: 'Unit', type: 'string' },
+      { field: 'Price', type: 'number' },
+      { field: 'Cost', type: 'number' },
       { field: 'StockWorth', type: 'string' },
       {
         field: 'actions',
@@ -182,8 +220,8 @@ const handleEditClick = (id) => () => {
     );
 
   return (
-    <div style={{ height: 500,margin:30, paddingTop:5,width:800 }}>
-      <center><h2>Inventory Category List </h2></center>
+    <div style={{ height: 500,margin:30, paddingTop:5 }}>
+      <center><h2>Inventory Product List </h2></center>
       <DataGrid columns={columns} rows={rows} 
       checkboxSelection
       pageSize={7}
