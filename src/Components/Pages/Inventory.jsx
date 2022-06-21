@@ -5,6 +5,7 @@ import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
 import ImportingModals from '../Modals/ImportingModals';
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
+import EnhancedTable from '../Table/EnhanceTable';
 
 
 
@@ -77,7 +78,8 @@ export const Product = () => {
                     Import
                 </ButtonR>
             </Stack>
-
+            
+            
             {/* Calling Importing Modal */}
             <ImportingModals
             show={showImport}
@@ -91,5 +93,10 @@ export const Product = () => {
             />
             </div>  
         </div>
+        {/* Data Grid */}
+        <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable/>
+        </div>
+
   </>)
 }
