@@ -9,32 +9,22 @@ import {AiOutlineDown} from 'react-icons/ai';
 import {IoNotifications} from 'react-icons/io5';
 import {CgShoppingBag} from 'react-icons/cg';
 
-//Components
+import {AiFillEdit} from 'react-icons/ai';
+import {BiLogOutCircle} from 'react-icons/bi';
+import {GrStorage} from 'react-icons/gr';
+import {TbArrowsLeftRight} from 'react-icons/tb';
+import {CgProfile} from 'react-icons/cg';
+import {FiSettings} from 'react-icons/fi';
+import {TiWaves} from 'react-icons/ti';
 
 
 import Stack from '@mui/material/Stack';
 import ButtonR from '@mui/material/Button';
-
-
-
 /////////////
 import { styled, alpha } from '@mui/material/styles';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-// import EditIcon from '@mui/icons-material/Edit';
 import Divider from '@mui/material/Divider';
-// import ArchiveIcon from '@mui/icons-material/Archive';
-// import FileCopyIcon from '@mui/icons-material/FileCopy';
-// import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import LogoutIcon from '@mui/icons-material/Logout';
-import StorageIcon from '@mui/icons-material/Storage';
-import WavesIcon from '@mui/icons-material/Waves';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
-import SettingsIcon from '@mui/icons-material/Settings';
-///////////
-
-
 
 //in line style
 const styleOfIcon={fontSize: "1.2em"}
@@ -170,7 +160,6 @@ const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClose = () => {
     setAnchorEl(null);
   };
-  ////////////////////
   return (<>
     <UpperNavbarItems>
       <div className="image_upperNavbar">
@@ -178,13 +167,6 @@ const [anchorEl, setAnchorEl] = React.useState(null);
       <div className="notification_button">
       </div>
       
-      {/* <MenueUpperNav>
-      {upperNav === 'outlined' ? <UpperButtons/> : null}
-      <ButtonR variant={upperNav} startIcon={<CgShoppingBag/>} onClick={navigateToPOS}>POS</ButtonR>
-      <NotificationBtn><IoNotifications style={styleOfIcon}/></NotificationBtn> 
-      <ButtonR variant='contained' startIcon = { <FaUserAlt/>} endIcon = {<AiOutlineDown/>}>Admin</ButtonR>
-      </MenueUpperNav> */}
-
    <MenueUpperNav>
       {upperNav === 'outlined' ? <UpperButtons/> : null}
       <ButtonR variant={upperNav} startIcon={<CgShoppingBag/>} onClick={navigateToPOS}>POS</ButtonR>
@@ -208,32 +190,32 @@ const [anchorEl, setAnchorEl] = React.useState(null);
       >
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <AccountCircleIcon/>
+          <CgProfile style={{marginRight:11}}  />
           Profile
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <SettingsIcon/>
+          <FiSettings style={{marginRight:11}}  />
           Settings
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <CompareArrowsIcon/>
+          <TbArrowsLeftRight style={{marginRight:11}}  />
           My Transactions
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <WavesIcon/>
+        <MenuItem onClick={handleClose} disableRipple >
+          <TiWaves style={{marginRight:11}} />
           My Holiday
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <StorageIcon/>
+          <GrStorage style={{marginRight:11}}  />  
           Empty Database
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
-          <LogoutIcon/>
+          <BiLogOutCircle style={{marginRight:11}}  />
           Logout
         </MenuItem>
         <Divider sx={{ my: 0.5 }} />
