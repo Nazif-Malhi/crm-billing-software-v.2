@@ -5,8 +5,6 @@ import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
 import ImportingModals from '../Modals/ImportingModals';
 import {AddPeopleModal } from '../Modals/PeopleModals';
-import CustomerList from "../Tables/CustomerList";
-import SupplierList from "../Tables/SupplierList";
 
 export const Customer = () => {
   const [showImport, setShowImport] = useState(false);
@@ -44,7 +42,6 @@ export const Customer = () => {
         onHide = {hideModalAdd}
         />
         </div>
-        <CustomerList/>
   </>
   )
 }
@@ -84,7 +81,6 @@ export const Supplier = () => {
         show = {showAddModal}
         onHide = {hideModalAdd}
         />
-        <SupplierList/>
         </div>
     </>)
 }
