@@ -8,8 +8,42 @@ import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
 import EnhancedTable from '../Table/EnhanceTable';
 
 
+// Data for Category
 
+function createData(imagePath,	Category,	ParentCategory,	NumofProduct,	Stock, Quantity,Worth) {
+  return { imagePath,	Category,	ParentCategory,	NumofProduct,	Stock, Quantity,Worth };
+}
 
+const rows = [
+  createData('Cupcake', 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Donut', 452, 25.0,305, 3.7, 305, 3.7, 305, 3.7,305, 3.7),
+  createData('Eclair', 262, 16.0,305, 3.7, 305, 3.7, 305, 3.7,305, 3.7),
+  createData('Frozen yoghurt', 159, 6.0,305, 3.7, 305, 3.7, 305, 3.7,305, 3.7),
+  createData('Gingerbread', 356, 16.0,305, 3.7, 305, 3.7, 305, 3.7,305, 3.7),
+  createData('Honeycomb', 408, 3.2,305, 3.7, 305, 3.7, 305, 3.7,305, 3.7),
+  createData('Ice cream sandwich', 237, 9.0,305, 3.7,305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Jelly Bean', 375, 0.0,305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('KitKat', 518, 26.0, 305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Lollipop', 392, 0.2,305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Marshmallow', 318, 0,305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Nougat', 360, 19.0,305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+  createData('Oreo', 437, 18.0,305, 3.7, 305, 3.7, 305, 3.7, 305, 3.7),
+]
+// .sort((a, b) => (a.calories < b.calories ? -1 : 1));
+
+const columns = [
+  'Image',
+  'Category',
+  'Parent Category',
+  'Number of Product',
+  'Stock',
+  'Quantity',
+  'Worth (Price/Cost)'
+]
+
+const keyColumn = [
+  'imagePath',	'Category',	'ParentCategory',	'NumofProduct',	'Stock', 'Quantity','Worth'
+]
 // Category 
 export const Category = () => {
     const [showImport, setShowImport] = useState(false);
@@ -50,6 +84,15 @@ export const Category = () => {
         />
       </div>
     </div>
+
+     {/* Data Grid */}
+     <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable 
+        rows={rows}
+        columns = {columns}
+        keyColumn = {keyColumn}
+        />
+        </div>
   </>)
 }
 
@@ -93,10 +136,7 @@ export const Product = () => {
             />
             </div>  
         </div>
-        {/* Data Grid */}
-        <div className="table" style={{width:'96%' , margin:'2%'}}>
-        <EnhancedTable/>
-        </div>
+       
 
   </>)
 }

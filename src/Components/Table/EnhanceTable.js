@@ -255,6 +255,14 @@ export default function EnhanceTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  // Calculating the Total in Data Grid
+  function getTotal(){
+    var total = 0;
+    rows.forEach(element => {
+      total += element.calories
+    });
+    return total;
+  }
 
 
   return (<>
@@ -296,6 +304,10 @@ export default function EnhanceTable() {
         </TableBody>
         <TableFooter>
           <TableRow>
+            <h6>Total: {
+              getTotal()
+            }
+            </h6>
             <CustomPaginationStyle
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
                 colSpan={6}
