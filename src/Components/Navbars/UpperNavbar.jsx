@@ -31,6 +31,7 @@ import Divider from '@mui/material/Divider';
 
 
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
+import { ChangeProfile } from '../Modals/AdminModal';
 
 
 //in line style
@@ -167,6 +168,19 @@ const [anchorEl, setAnchorEl] = React.useState(null);
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
+  const [showImport, setShowImport] = useState(false);
+  function funcSetShowImport(){
+    handleClose();
+    setShowImport(!showImport)
+  }
+  function hideModalImport(){
+    
+    setShowImport(false);
+}
+
+
   return (<>
     <UpperNavbarItems>
       <div className="image_upperNavbar">
@@ -196,17 +210,9 @@ const [anchorEl, setAnchorEl] = React.useState(null);
         onClose={handleClose}
       >
         <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem onClick = {funcSetShowImport} disableRipple>
           <CgProfile style={{marginRight:11}}  />
-
-
- 
-
-          
-
-          
- 
-
+          Profile
 
       </MenuItem>
         <Divider sx={{ my: 0.5 }} />
@@ -239,6 +245,11 @@ const [anchorEl, setAnchorEl] = React.useState(null);
       </MenueUpperNav>
 
     </UpperNavbarItems>
+
+    <ChangeProfile
+    show={showImport}
+    onHide = {hideModalImport}
+    />
 </>
   )
 }
