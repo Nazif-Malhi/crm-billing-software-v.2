@@ -65,4 +65,3 @@ function createDataProduct(imagePath, name, code, brand, category, qty, unit, pr
                                 	'Cost',
                                     	'Stock Worth (Price/Cost)'	
 ]
-  
