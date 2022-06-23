@@ -345,6 +345,28 @@ function getColumnsHeader () {
     return <StyledTableCell align="right">{data}</StyledTableCell>
   })
 }
+const getRows =()=>{
+  const column = Object.keys(rows[0]);
+  const newSlicedArray = column.slice(1); // get all  the data except first column
+  const getFirst = column.slice(0,1); // get the first column data to treat special
+  return (rowsPerPage > 0
+    ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    : rows
+  ).map((data) => {
+    return(
+      <StyledTableRow key={data[getFirst]}>
+            <StyledTableCell component="th" scope="row">
+              {data[getFirst]}
+            </StyledTableCell>
+      {newSlicedArray.map((v)=> {
+        return <StyledTableCell align="right">{data[v]}</StyledTableCell>
+
+      })}
+      <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell>
+      </StyledTableRow>
+    )
+  })
+}
 
 
   return (<>
@@ -368,23 +390,7 @@ function getColumnsHeader () {
           </TableRow>
         </TableHead>
         <TableBody>
-            {(rowsPerPage > 0
-            ? dataFiltered .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : dataFiltered
-            ).map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell> 
-
-            </StyledTableRow>
-          ))}
-
+        {getRows()}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />
