@@ -26,6 +26,13 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 
+
+//import ChangeProfile from '../Modals/AdminModal';
+
+
+import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
+
+
 //in line style
 const styleOfIcon={fontSize: "1.2em"}
 
@@ -191,8 +198,17 @@ const [anchorEl, setAnchorEl] = React.useState(null);
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
           <CgProfile style={{marginRight:11}}  />
-          Profile
-        </MenuItem>
+
+
+ 
+
+          
+
+          
+ 
+
+
+      </MenuItem>
         <Divider sx={{ my: 0.5 }} />
         <MenuItem onClick={handleClose} disableRipple>
           <FiSettings style={{marginRight:11}}  />
