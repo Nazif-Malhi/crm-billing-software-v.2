@@ -5,7 +5,8 @@ import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
 import ImportingModals from '../Modals/ImportingModals';
 import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
-
+import EnhancedTable from '../Table/EnhanceTable';
+import { columnsHeader , columnsHeaderProduct, rows, rowsProduct} from '../Data/TableData';
 
 
 // Category 
@@ -48,6 +49,15 @@ export const Category = () => {
         />
       </div>
     </div>
+
+     {/* Data Grid */}
+     <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable 
+        data={rows}
+        columnsHeader = {columnsHeader}
+        tableTitle={"Category List"}
+        />
+        </div>
   </>)
 }
 
@@ -76,7 +86,8 @@ export const Product = () => {
                     Import
                 </ButtonR>
             </Stack>
-
+            
+            
             {/* Calling Importing Modal */}
             <ImportingModals
             show={showImport}
@@ -90,5 +101,13 @@ export const Product = () => {
             />
             </div>  
         </div>
+       {/* Data Grid */}
+     <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable 
+        rows={rowsProduct}
+        columnsHeader = {columnsHeaderProduct}
+        />
+        </div>
+
   </>)
 }
