@@ -9,12 +9,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 
-
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import PropTypes from 'prop-types';
 import { useTheme } from '@mui/material/styles';
-import IconButton from '@mui/material/IconButton';
 
 
 // Importing Icons 
@@ -22,9 +20,22 @@ import IconButton from '@mui/material/IconButton';
 import {MdFirstPage , MdLastPage, MdOutlineModeEditOutline, MdDelete} from 'react-icons/md';
 import {AiOutlineRight , AiOutlineLeft, AiOutlineDown} from 'react-icons/ai'
 
+
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+
+import IconButton from "@mui/material/IconButton";
+import TextField from "@mui/material/TextField";
+
+
+//Print
+import {useReactToPrint} from "react-to-print";
+import { useRef } from 'react';
+
+//export to csv
+// import { useTable } from "react-table";
+import { CSVLink } from "react-csv";
 
 
 
@@ -57,7 +68,7 @@ function createData(name, calories, fat, carbs, protein) {
   return { name, calories, fat, carbs, protein };
 }
 
-const rows = [
+const data = [
   createData('Cupcake', 305, 3.7),
   createData('Donut', 452, 25.0),
   createData('Eclair', 262, 16.0),
@@ -236,12 +247,58 @@ function CustomizedMenus() {
 
 
 
+///// Search bar
+
+const SearchBar = ({setSearchQuery}) => (
+      <Box sx={{ display: 'flex', alignItems: 'flex-end', marginBottom:3 }}>
+        {/* <BiSearch sx={{ color: 'action.active', mr: 1, my: 0.5 }} /> */}
+        
+          <TextField
+            id="search-bar"
+            className="text"
+            onInput={(e) => {
+              setSearchQuery(e.target.value);
+            }}
+            label="Search ..."
+            variant="outlined"
+            placeholder="Search..."
+            size="small"
+          />
+        </Box>
+ 
+);
+
+const filterData = (query, rows) => {
+  if (!query) {
+    return rows;
+  } else {
+    return rows.filter((d) => d.name.toLowerCase().includes(query));
+  }
+};
+
+//// end Search
+
+
 
 export default function EnhanceTable() {
 
   // pagination
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [rows, setRows] = React.useState(data);
+  
+  /// Print 
+  let printRef= useRef();
+  const handlePrint=useReactToPrint({content:()=>printRef.current});
+    
+  
+//Export CSV
+const dataToCSV = React.useMemo(() => {
+  let columns=["Dessert (100g serving)", "Calories", "Fat (g)"]
+  let rowsWithHeader=[columns, ...rows];
+  return rowsWithHeader.map((d) => Object.values(d));
+}, []);
+
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -255,6 +312,8 @@ export default function EnhanceTable() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+
   // Calculating the Total in Data Grid
   function getTotal(){
     var total = 0;
@@ -264,11 +323,33 @@ export default function EnhanceTable() {
     return total;
   }
 
+// search 
+
+const [searchQuery, setSearchQuery] = React.useState("");
+const dataFiltered = filterData(searchQuery, rows);
+
+const csvBtn= {
+  textDecoration:"none",
+  border:"1px  solid #8fbce9",
+  borderRadius:"5px " ,
+  alignItems:"baseline",
+  color:"#2f76d2",
+  paddingBottom:"10px"
+
+};
 
   return (<>
-  
-    <TableContainer component={Paper}>
-      <Table aria-label="custom pagination table">
+    <div style={{ display:"flex", alignItems: "baseline",justifyContent: "space-between" }} >
+      <h2>Category List </h2>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}  />
+      <div>
+        <Button variant="outlined" onClick={handlePrint} >Print</Button>&nbsp;&nbsp;
+        {/* <Button variant="outlined"  ><CSVLink data={dataToCSV}/></Button> */}
+        <CSVLink variant="outlined"   data={dataToCSV} style={ csvBtn}>EXPORT as CSV</CSVLink>
+      </div>
+    </div>
+    <TableContainer component={Paper} ref={printRef}>
+      <Table aria-label="custom pagination table" ref={printRef}>
         <TableHead>
           <TableRow>
             <StyledTableCell>Dessert (100g serving)</StyledTableCell>
@@ -281,9 +362,9 @@ export default function EnhanceTable() {
         </TableHead>
         <TableBody>
             {(rowsPerPage > 0
-            ? rows.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : rows
-          ).map((row) => (
+            ? dataFiltered .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            : dataFiltered
+            ).map((row) => (
             <StyledTableRow key={row.name}>
               <StyledTableCell component="th" scope="row">
                 {row.name}
@@ -292,7 +373,8 @@ export default function EnhanceTable() {
               <StyledTableCell align="right">{row.fat}</StyledTableCell>
               <StyledTableCell align="right">{row.carbs}</StyledTableCell>
               <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell>
+              <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell> 
+
             </StyledTableRow>
           ))}
 
