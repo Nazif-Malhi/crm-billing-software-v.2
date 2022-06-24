@@ -1,5 +1,4 @@
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Im from '../Data/ss-icon-22.jpg';
 
@@ -15,6 +14,7 @@ const ItemsCard = ({item}) => {
         <Card.Title style = {{fontSize: '1.2vw'}}>{item.title}</Card.Title>
         <Card.Text>
          {item.price}
+         <h2>hhuyuyuy</h2>
         </Card.Text>
       </Card.Body>
     </Card>

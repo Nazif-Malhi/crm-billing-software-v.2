@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Row , Col , Container } from 'react-bootstrap';
+import { Row , Col } from 'react-bootstrap';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import ItemsCard from '../Cards/ItemsCard';
@@ -7,6 +7,7 @@ import { TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import {BsSearch } from 'react-icons/bs'
 import { CartItems, proItems } from '../Data/CartItems';
+import OrderTable from '../Table/OrderTable';
 
 const styleOfBase = {
   overflowY: 'scroll',
@@ -83,7 +84,11 @@ function Pos({val}){
     <div className='posContainer' style={{overflowX:'hidden'}}>
       <Row>
         <Col>
-        Left
+        <input></input>
+        
+        <div className='stylePosTable' style={{marginTop:'20px' , marginLeft:'20px'}}>
+        <OrderTable/>
+        </div>
         </Col>
         <Col>
         <div className='center' style  = {{textAlign:'center'}}>
