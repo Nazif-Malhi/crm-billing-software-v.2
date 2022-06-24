@@ -280,12 +280,15 @@ const filterData = (query, rows) => {
 
 
 
-export default function EnhanceTable() {
+export default function EnhanceTable({
+  rows,
+  columnsHeader
+}) {
 
   // pagination
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [rows, setRows] = React.useState(data);
+  const [rowData, setRows] = React.useState(data);
   
   /// Print 
   let printRef= useRef();
@@ -295,7 +298,7 @@ export default function EnhanceTable() {
 //Export CSV
 const dataToCSV = React.useMemo(() => {
   let columns=["Dessert (100g serving)", "Calories", "Fat (g)"]
-  let rowsWithHeader=[columns, ...rows];
+  let rowsWithHeader=[columns, ...rowData];
   return rowsWithHeader.map((d) => Object.values(d));
 }, []);
 
@@ -326,7 +329,7 @@ const dataToCSV = React.useMemo(() => {
 // search 
 
 const [searchQuery, setSearchQuery] = React.useState("");
-const dataFiltered = filterData(searchQuery, rows);
+const dataFiltered = filterData(searchQuery, rowData);
 
 const csvBtn= {
   textDecoration:"none",
@@ -337,6 +340,12 @@ const csvBtn= {
   paddingBottom:"10px"
 
 };
+function getColumnsHeader () {
+  return columnsHeader.slice(1).map((data) =>{
+    return <StyledTableCell align="right">{data}</StyledTableCell>
+  })
+}
+
 
   return (<>
     <div style={{ display:"flex", alignItems: "baseline",justifyContent: "space-between" }} >
@@ -352,11 +361,9 @@ const csvBtn= {
       <Table aria-label="custom pagination table" ref={printRef}>
         <TableHead>
           <TableRow>
-            <StyledTableCell>Dessert (100g serving)</StyledTableCell>
-            <StyledTableCell align="right">Calories</StyledTableCell>
-            <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell>
-            <StyledTableCell align="right">Protein&nbsp;(g)</StyledTableCell>
+          <StyledTableCell align="right">{columnsHeader[0]}</StyledTableCell>
+          {/* Dynamically Data */}
+            {getColumnsHeader()}     
             <StyledTableCell align="center">Action</StyledTableCell>
           </TableRow>
         </TableHead>
@@ -386,13 +393,9 @@ const csvBtn= {
         </TableBody>
         <TableFooter>
           <TableRow>
-            <h6>Total: {
-              getTotal()
-            }
-            </h6>
             <CustomPaginationStyle
                 rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-                colSpan={6}
+                colSpan={12}
                 count={rows.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
@@ -408,9 +411,7 @@ const csvBtn= {
                 />
           </TableRow>
         </TableFooter>
-        
       </Table>
-      
     </TableContainer>
    
   </>
