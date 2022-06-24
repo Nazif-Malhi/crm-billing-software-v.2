@@ -8,7 +8,6 @@ import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
 
 
 
-
 // Category 
 export const Category = () => {
     const [showImport, setShowImport] = useState(false);
