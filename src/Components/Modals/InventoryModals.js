@@ -107,7 +107,7 @@ return (
                 <Row>
                     <Col xs={10} md={6}>
                         <h6>Name*</h6>
-                        <TextField id="outlined-basic" label="Type Category Name ..." variant="outlined" />
+                        <TextField id="outlined-basic" label="Category Name" variant="outlined" />
                     </Col>
                     <Col xs = {8} md = {6}>
                         <h6>Image</h6>
@@ -118,7 +118,7 @@ return (
                     <Col xs = {12} md = {12}>
                         <h6>Parent Category</h6>
                     <FormControl sx={{ width: 300 }}>
-                        <InputLabel id="demo-multiple-chip-label" >Chip</InputLabel>
+                        <InputLabel id="demo-multiple-chip-label" >Select parent Category</InputLabel>
                         <Select
                         labelId="demo-multiple-chip-label"
                         id="demo-multiple-chip"
@@ -166,207 +166,410 @@ return (
 
 //  Modal For Products 
 export const AddProductModal = ({
-    onHide,
-    show
+  onHide,
+  show
 
 }) => {
 
-      // For DropDown -> Type
-  const [type, setType] = useState('');
-  //State for Show Hide on Standard
-  const [hide , setHide] = useState(false);
-  const onServicesShow = () => setHide(true);
-  const onServicesHide = () => setHide(false);
+    // For DropDown -> Type
+const [type, setType] = useState('');
+//State for Show Hide on Standard
+const [hide , setHide] = useState(false);
+const onServicesShow = () => setHide(true);
+const onServicesHide = () => setHide(false);
 
 
-  const handleChangeTypeS = (event) => {
-    setType(event.target.value);
-    if(event.target.value === 'Services'){
-      onServicesShow();
-    }
-    else{
-      onServicesHide();
-    }
-
-  };
-  const Result = () => {
-    return(
-        <Row className='Standard'>
-            <Col xs={6} md={4}>
-            <h6>Product Unit*</h6>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ width: 220 }}
-              size = 'small'                
-              renderInput={(params) => <TextField {...params} label="Movie" />}
-            />       
-            </Col>
-            <Col xs={6} md={4}>
-            <h6>Sale Unit</h6>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ width: 220 }}
-              size = 'small'                
-              renderInput={(params) => <TextField {...params} label="Movie" />}
-            />       
-            </Col>
-            <Col xs={6} md={4}>
-            <h6>Purchase Unit</h6>
-            <Autocomplete
-              disablePortal
-              id="combo-box-demo"
-              options={top100Films}
-              sx={{ width: 220 }}
-              size = 'small'                
-              renderInput={(params) => <TextField {...params} label="Movie" />}
-            />       
-            </Col>
-            </Row>
-    )
-  
+const handleChangeTypeS = (event) => {
+  setType(event.target.value);
+  if(event.target.value === 'Services'){
+    onServicesShow();
+  }
+  else{
+    onServicesHide();
   }
 
-  return (<div className="add_product-Modal" >  
-      
-  <Modal fullscreen show={show} onHide = {onHide}>  
-  <Modal.Header closeButton style={{backgroundColor : '#F7F7F7'}}>  
-    <Modal.Title>Add Products</Modal.Title>  
-  </Modal.Header>  
-  
-  <Modal.Body className='show-grid' >
-    <Container>
-      <Row className='topSpace'>
-        <Col xs={6} md={4}>
-          <h6>Product Type*</h6>
-          <FormControl1 sx={{ minWidth: 220 }} size="small">
-          <InputLabel id="demo-select-small">Type</InputLabel>
-            <Select
-              labelId="demo-select-small"
-              id="demo-select-small"
-              value={type}
-              label="product_type"
-              onChange={handleChangeTypeS}
-            >
-              <MenuItem value="None">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="Standard">Standard</MenuItem>
-              <MenuItem value="Services">Services</MenuItem>
-            </Select>
-            </FormControl1>
-            
-        </Col>
-        <Col xs={6} md={4}>
-        <h6>Product Name*</h6>
-            <TextField id="outlined-basic" label=" " variant="outlined" size="small" style={{width:220}}/>
-        </Col>
-        <Col xs={6} md={4}>
-          <h6>Product Code</h6>
-          <TextField id ="outlined-basics" label= "Product Code" variant='outlined' size='small'
-            InputProps={{
-              
-              style :{
-                paddingRight: '0px',
-                width:220
-              },
-              endAdornment: (
-                <InputAdornment position="end" >
-                  <ButtonR  variant="contained" endIcon={<MdOutlineAutorenew />}
-                    style = {{height: '38px', marginBottom:1}}>
-                  </ButtonR>
-                </InputAdornment>
-              )
-            }}
-            />
-        </Col>
-      </Row>
-      <Row className='topSpace'>
-      <Col xs={6} md={4}>
-        <h6>Brand</h6>
-        <Autocomplete
+};
+const Result = () => {
+  return(
+      <Row className='Standard'>
+          <Col xs={6} md={4}>
+          <h6>Product Unit*</h6>
+          <Autocomplete
             disablePortal
             id="combo-box-demo"
             options={top100Films}
             sx={{ width: 220 }}
-            size = 'small'
+            size = 'small'                
             renderInput={(params) => <TextField {...params} label="Movie" />}
-          />
-        </Col>
-        <Col xs={6} md={4}>
-        <h6>Category *</h6>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 220 }}
-          size = 'small'                
-          renderInput={(params) => <TextField {...params} label="Movie" />}
-        />              
-        </Col>
-        <Col xs={6} md={4}>
-        <h6>Product Price*</h6>
-            <TextField type='number' id="outlined-basic" label="Product Name" variant="outlined" size="small" style={{width:220}}/>
-        </Col>
-      </Row>
-      <Row className='topSpace'>
-      <Col xs={6} md={4}>
-        <h6>Product Tax</h6>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 220 }}
-          size = 'small'                
-          renderInput={(params) => <TextField {...params} label="Movie" />}
-        />              
-        </Col>
-        <Col xs={6} md={4}>
-        <div className='con' style={{display:"flex"}}>
-        <h6>Tax Method</h6>
-        <Tooltip title="Add" placement="top-start">
-        <ButtonR startIcon={<MdOutlineHelpOutline />} style ={{marginTop:-5}}>
-        </ButtonR>
-        </Tooltip>
-        </div>
-        <Autocomplete
-          disablePortal
-          id="combo-box-demo"
-          options={top100Films}
-          sx={{ width: 220 }}
-          size = 'small'                
-          renderInput={(params) => <TextField {...params} label="Movie" />}
-        />              
-        </Col>
-        <Col xs = {6} md = {4}>
-          <h6>Image</h6>
-          <input type="file" name='myfile' onChange={handleImage()} className = "customInputForProduct" style={inputStyle}/>
-        </Col>
-      </Row>
-        {hide ? <Result /> : null}
-        <Row className='topSpace'>
-          <Col xs = {18} md = {12}>
-            <h6>Short Description</h6>
-          <TextField
-            id="outlined-multiline-static"
-            label="Description"
-            multiline
-            rows={4}
-            style = {{width:'88%'}}
-          />
+          />       
           </Col>
-        </Row>
-    </Container>
-  </Modal.Body>  
-  
-  <Modal.Footer>  
-    <Button variant="secondary" onClick={onHide}>Close Modal</Button>  
-    <Button variant="primary" onClick={onHide}>Save changes</Button>  
-  </Modal.Footer>  
+          <Col xs={6} md={4}>
+          <h6>Sale Unit</h6>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            sx={{ width: 220 }}
+            size = 'small'                
+            renderInput={(params) => <TextField {...params} label="Movie" />}
+          />       
+          </Col>
+          <Col xs={6} md={4}>
+          <h6>Purchase Unit</h6>
+          <Autocomplete
+            disablePortal
+            id="combo-box-demo"
+            options={top100Films}
+            sx={{ width: 220 }}
+            size = 'small'                
+            renderInput={(params) => <TextField {...params} label="Movie" />}
+          />       
+          </Col>
+          </Row>
+  )
+
+}
+
+return (<div className="add_product-Modal" >  
+    
+<Modal fullscreen show={show} onHide = {onHide}>  
+<Modal.Header closeButton style={{backgroundColor : '#F7F7F7'}}>  
+  <Modal.Title>Add Products</Modal.Title>  
+</Modal.Header>  
+
+<Modal.Body className='show-grid' >
+  <Container>
+    <Row className='topSpace'>
+      <Col xs={6} md={4}>
+        <h6>Type*</h6>
+        <FormControl1 sx={{ minWidth: 220 }} size="small">
+        <InputLabel id="demo-select-small">Product Type</InputLabel>
+          <Select
+            labelId="demo-select-small"
+            id="demo-select-small"
+            value={type}
+            label="product_type"
+            onChange={handleChangeTypeS}
+          >
+            <MenuItem value="None">
+              <em>None</em>
+            </MenuItem>
+            <MenuItem value="Standard">Standard</MenuItem>
+            <MenuItem value="Services">Services</MenuItem>
+          </Select>
+          </FormControl1>
+          
+      </Col>
+      <Col xs={6} md={4}>
+      <h6>Name*</h6>
+          <TextField id="outlined-basic"  label= "Product Name" variant="outlined" size="small" style={{width:220}}/>
+      </Col>
+      <Col xs={6} md={4}>
+        <h6>Code*</h6>
+        <TextField id ="outlined-basics" label= "Product Code" variant='outlined' size='small'
+          InputProps={{
+            
+            style :{
+              paddingRight: '0px',
+              width:220
+            },
+            endAdornment: (
+              <InputAdornment position="end" >
+                <ButtonR  variant="contained" endIcon={<MdOutlineAutorenew />}
+                  style = {{height: '38px', marginBottom:1}}>
+                </ButtonR>
+              </InputAdornment>
+            )
+          }}
+          />
+      </Col>
+    </Row>
+    <Row className='topSpace'>
+    <Col xs={6} md={4}>
+      <h6>Brand</h6>
+      <Autocomplete
+          disablePortal
+          id="combo-box-demo"
+          options={top100Films}
+          sx={{ width: 220 }}
+          size = 'small'
+          renderInput={(params) => <TextField {...params} label="Select Brand" />}
+        />
+      </Col>
+      <Col xs={6} md={4}>
+      <h6>Category*</h6>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label=" Select Category" />}
+      />              
+      </Col>
+      <Col xs={6} md={4}>
+
+
+      <h6>Product Price*</h6>
+          <TextField type='number' label="Product Price" variant="outlined" size="small" style={{width:220}}/>
+      </Col>
+
+    </Row>
+
+
+    <Row className='topSpace'>
+      <Col xs={6} md={4}>
+      <h6>Unit*</h6>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label="Product Unit" />}
+      />              
+      </Col>
+
+      <Col xs={6} md={4}>
+      <h6>Sale Unit</h6>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label="Select Sales Unit" />}
+      />              
+      </Col>
+
+      <Col xs={6} md={4}>
+      <h6>Purchase Unit*</h6>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label="Select purchase Unit" />}
+      />              
+      </Col>
+
+
+    </Row>
+    <Row className='topSpace'>
+
+    <Col xs={6} md={4}>
+      <h6>Tax</h6>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label="Product Tax" />}
+      />              
+      </Col>
+      <Col xs={6} md={4}>
+      <div className='con' style={{display:"flex"}}>
+      <h6>Tax Method</h6>
+      <Tooltip title="Add" placement="top-start">
+      <ButtonR startIcon={<MdOutlineHelpOutline />} style ={{marginTop:-5}}>
+      </ButtonR>
+      </Tooltip>
+      </div>
+      <Autocomplete
+        disablePortal
+        id="combo-box-demo"
+        options={top100Films}
+        sx={{ width: 220 }}
+        size = 'small'                
+        renderInput={(params) => <TextField {...params} label="Exclusive" />}
+      />              
+      </Col>
+
+ 
+
+      <Col xs = {6} md = {4}>
+      <div className='con' style={{display:"flex"}}>
+        <h6>Product Image</h6>
+        <Tooltip title="Add" placement="top-start">
+      <ButtonR startIcon={<MdOutlineHelpOutline />} style ={{marginTop:-5}}>
+      </ButtonR>
+      </Tooltip>
+      </div>
+    
+        <input type="file" name='myfile' onChange={handleImage()} className = "customInputForProduct" style={inputStyle}/>
+        </Col>
+    </Row>
+
+
+      {hide ? <Result /> : null}
+      <Row className='topSpace'>
+        <Col xs = {18} md = {12}>
+          <h6>Description</h6>
+        <TextField
+          id="outlined-multiline-static"
+          label="Short Description"
+          multiline
+          rows={7}
+          style = {{width:'88%'}}
+        />
+        </Col>
+      </Row>
+  </Container>
+</Modal.Body>  
+
+<Modal.Footer>  
+  <Button variant="secondary" onClick={onHide}>Close</Button>  
+  <Button variant="primary" onClick={onHide}>Save changes</Button>  
+</Modal.Footer>  
 </Modal>  
 </div>
-  )
+)
+}
+
+
+
+
+
+//Modal for stock
+
+
+
+export const AddStockCount = ({
+  onHide,
+  show
+}) => {
+
+  // Changing the Name's
+  const theme = useTheme();
+  const [personName, setPersonName] = useState([]);
+  const handleChange = (event) => {
+      const {
+        target: { value },
+      } = event;
+      setPersonName(
+        // On autofill we get a stringified value.
+        typeof value === 'string' ? value.split(',') : value,
+      );
+  };
+
+  function getStyles(name, personName, theme) {
+      return {
+      fontWeight:
+          personName.indexOf(name) === -1
+          ? theme.typography.fontWeightRegular
+          : theme.typography.fontWeightMedium,
+      };
+  }
+
+  
+
+  const ITEM_HEIGHT = 48;
+  const ITEM_PADDING_TOP = 8;
+  const MenuProps = {
+  PaperProps: {
+      style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+      },
+  },
+  };
+
+
+
+return (
+  <div className='addmodal_div'>
+      <Modal show={show} 
+      onHide={onHide}
+      size="lg" 
+      aria-labelledby="example-modal-sizes-title-lg"
+      >
+          <Modal.Header closeButton style={{backgroundColor : '#F7F7F7'}}>
+              <Modal.Title>Add Category</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className='show-grid'>
+              <p>
+                  <i style={{color:'red'}}>The field marked with * are required input fields.</i>
+              </p>
+          <Container>
+              <Row>
+                  <Col xs = {8} md = {6}>
+                      <h6>Warehouse</h6>
+                  <FormControl sx={{ width: 300 }}>
+                      <InputLabel id="demo-multiple-chip-label" >Select Warehouse</InputLabel>
+                      <Select
+                      labelId="demo-multiple-chip-label"
+                      id="demo-multiple-chip"
+                      multiple
+                      value={personName}
+                      onChange={handleChange}
+                      input={<OutlinedInput id="select-multiple-chip" label="Chip" />}
+                      renderValue={(selected) => (
+                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                          {selected.map((value) => (
+                              <Chip key={value} label={value} />
+                              ))}
+                          </Box>
+                          )}
+                          MenuProps={MenuProps}
+                          >
+                          {names.map((name) => (
+                              <MenuItem
+                              key={name}
+                              value={name}
+                              style={getStyles(name, personName, theme)}
+                              >
+                              {name}
+                              </MenuItem>
+                          ))}
+                          </Select>
+                      </FormControl>
+                  </Col>
+                  <Col xs = {8} md = {6}>
+                      <h6>Type</h6>
+                  <FormControl sx={{ width: 300 }}>
+                      <InputLabel id="demo-multiple-chip-label" >Select Warehouse</InputLabel>
+                      <Select
+                      labelId="demo-multiple-chip-label"
+                      id="demo-multiple-chip"
+                      multiple
+                      value={personName}
+                      onChange={handleChange}
+                      input={<OutlinedInput id="select-multiple-chip" label="Stock Type" />}
+                      renderValue={(selected) => (
+                          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
+                          {selected.map((value) => (
+                              <Chip key={value} label={value} />
+                              ))}
+                          </Box>
+                          )}
+                          MenuProps={MenuProps}
+                          >
+                          {names.map((name) => (
+                              <MenuItem
+                              key={name}
+                              value={name}
+                              style={getStyles(name, personName, theme)}
+                              >
+                              {name}
+                              </MenuItem>
+                          ))}
+                          </Select>
+                      </FormControl>
+                  </Col>
+              </Row>
+          </Container>
+      </Modal.Body>
+      <Modal.Footer>
+          <Button variant="secondary" onClick={onHide}>
+              Close
+          </Button>
+          <Button variant="primary" onClick={onHide}>
+              Submit
+          </Button>
+      </Modal.Footer>
+      </Modal>
+  </div>
+)
 }
