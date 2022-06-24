@@ -3,8 +3,12 @@ import Stack from '@mui/material/Stack';
 import ButtonR from '@mui/material/Button';
 import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
+import UpperNavbar from '../Navbars/UpperNavbar';
 import ImportingModals from '../Modals/ImportingModals';
-import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
+import { AddCategoryModal, AddProductModal, AddStockCount } from '../Modals/InventoryModals';
+
+
+import AdjustmentForm from '../Forms/AdjustmentForm'
 
 
 
@@ -23,11 +27,12 @@ export const Category = () => {
 
 
   return (<>
+  
     <div className='main_container' style={{padding:10}}>
       <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
         <Stack spacing={2} direction="row">
             <ButtonR variant="contained" startIcon={<IoMdAdd />} onClick = {() => setShowAddModal(!showAddModal)}>
-                Add Category's
+                Add Category
             </ButtonR>
             <ButtonR variant="contained" startIcon={<MdOutlineImportExport />} onClick = {() => setShowImport(!showImport)}>
                 Import
@@ -92,4 +97,48 @@ export const Product = () => {
             </div>  
         </div>
   </>)
+}
+
+
+
+// Stock
+
+export const Stock = () => {
+  const [showAddModal, setShowAddModal] = useState(false);
+  console.log("showAddModal " + showAddModal)
+
+  function hideModalAdd(){
+    setShowAddModal(false);
+  }
+return (<>
+    <div className='main_container' style={{padding:10}}>
+      <div  style={{paddingBottom:20,display:"flex",justifyContent:"space-between"}} >
+          <Stack spacing={2} direction="row">
+              <ButtonR variant="contained" startIcon={<IoMdAdd />} onClick = {() => setShowAddModal(!showAddModal)}>
+                  Stock Count
+              </ButtonR>
+
+          </Stack>
+
+
+           <AddStockCount 
+          show= {showAddModal}
+          onHide = {hideModalAdd}
+          />
+          </div>  
+      </div>
+</>)
+}
+
+
+
+//adjustment
+
+export const Adjustment = () => {
+  return (<>
+    <div className="Forms"  style={{padding:'20px' , paddingTop:'60px'}}>
+        {/* Form */}
+    <AdjustmentForm/>
+    </div>
+    </>)
 }
