@@ -7,6 +7,7 @@ export const AddPurchase = () => {
         {/* Form */}
     <PurchaseForm/>
     </div>
+      
     </>)
 }
 
