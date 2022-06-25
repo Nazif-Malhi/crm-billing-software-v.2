@@ -5,12 +5,18 @@ import {IoMdAdd} from 'react-icons/io';
 import {MdOutlineImportExport} from 'react-icons/md';
 import UpperNavbar from '../Navbars/UpperNavbar';
 import ImportingModals from '../Modals/ImportingModals';
+<<<<<<< HEAD
 import { AddCategoryModal, AddProductModal, AddStockCount } from '../Modals/InventoryModals';
 
 
 import AdjustmentForm from '../Forms/AdjustmentForm'
 
 
+=======
+import { AddCategoryModal, AddProductModal } from '../Modals/InventoryModals';
+import EnhancedTable from '../Table/EnhanceTable';
+import { columnsHeader , columnsHeaderProduct, rows, rowsProduct} from '../Data/TableData';
+>>>>>>> 06206ad9d4ced69a88f97f427370634207850d3f
 
 
 // Category 
@@ -54,6 +60,15 @@ export const Category = () => {
         />
       </div>
     </div>
+
+     {/* Data Grid */}
+     <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable 
+        data={rows}
+        columnsHeader = {columnsHeader}
+        tableTitle={"Category List"}
+        />
+        </div>
   </>)
 }
 
@@ -82,7 +97,8 @@ export const Product = () => {
                     Import
                 </ButtonR>
             </Stack>
-
+            
+            
             {/* Calling Importing Modal */}
             <ImportingModals
             show={showImport}
@@ -96,6 +112,14 @@ export const Product = () => {
             />
             </div>  
         </div>
+       {/* Data Grid */}
+     <div className="table" style={{width:'96%' , margin:'2%'}}>
+        <EnhancedTable 
+        rows={rowsProduct}
+        columnsHeader = {columnsHeaderProduct}
+        />
+        </div>
+
   </>)
 }
 
