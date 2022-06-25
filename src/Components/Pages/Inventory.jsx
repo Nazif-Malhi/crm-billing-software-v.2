@@ -9,7 +9,6 @@ import EnhancedTable from '../Table/EnhanceTable';
 import { columnsHeader , columnsHeaderProduct, rows, rowsProduct} from '../Data/TableData';
 
 
-
 // Category 
 export const Category = () => {
     const [showImport, setShowImport] = useState(false);
