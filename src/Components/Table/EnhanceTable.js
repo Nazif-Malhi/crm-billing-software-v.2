@@ -62,29 +62,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 
 
-// Data
-
-function createData(name, calories, fat, carbs, protein) {
-  return { name, calories, fat, carbs, protein };
-}
-
-const data = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-].sort((a, b) => (a.calories < b.calories ? -1 : 1));
-
-
 
 // Pagination
 
@@ -280,15 +257,12 @@ const filterData = (query, rows) => {
 
 
 
-export default function EnhanceTable({
-  rows,
-  columnsHeader
-}) {
+export default function EnhanceTable({ data,columnsHeader ,tableTitle}) {
 
   // pagination
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
-  const [rowData, setRows] = React.useState(data);
+  const [rows, setRows] = React.useState(data);
   
   /// Print 
   let printRef= useRef();
@@ -297,8 +271,8 @@ export default function EnhanceTable({
   
 //Export CSV
 const dataToCSV = React.useMemo(() => {
-  let columns=["Dessert (100g serving)", "Calories", "Fat (g)"]
-  let rowsWithHeader=[columns, ...rowData];
+  let columns=columnsHeader;
+  let rowsWithHeader=[columns, ...rows];
   return rowsWithHeader.map((d) => Object.values(d));
 }, []);
 
@@ -329,7 +303,7 @@ const dataToCSV = React.useMemo(() => {
 // search 
 
 const [searchQuery, setSearchQuery] = React.useState("");
-const dataFiltered = filterData(searchQuery, rowData);
+const dataFiltered = filterData(searchQuery, rows);
 
 const csvBtn= {
   textDecoration:"none",
@@ -337,7 +311,8 @@ const csvBtn= {
   borderRadius:"5px " ,
   alignItems:"baseline",
   color:"#2f76d2",
-  paddingBottom:"10px"
+  paddingBottom:"12px",
+  paddingTop:"7px"
 
 };
 function getColumnsHeader () {
@@ -347,9 +322,35 @@ function getColumnsHeader () {
 }
 
 
+const getRows =()=>{
+  const column = Object.keys(rows[0]);
+  const newSlicedArray = column.slice(1); // get all  the data except first column
+  const getFirst = column.slice(0,1); // get the first column data to treat special
+  return (rowsPerPage > 0
+    ? dataFiltered.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+    : dataFiltered
+  ).map((data) => {
+    return(
+      <StyledTableRow key={data[getFirst]}>
+            <StyledTableCell component="th" scope="row">
+              {data[getFirst]}
+            </StyledTableCell>
+      {newSlicedArray.map((v)=> {
+        return <StyledTableCell align="right">{data[v]}</StyledTableCell>
+
+      })}
+      <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell>
+      </StyledTableRow>
+    )
+
+    
+  })
+}
+
+
   return (<>
     <div style={{ display:"flex", alignItems: "baseline",justifyContent: "space-between" }} >
-      <h2>Category List </h2>
+      <h2>{ tableTitle }</h2>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery}  />
       <div>
         <Button variant="outlined" onClick={handlePrint} >Print</Button>&nbsp;&nbsp;
@@ -368,23 +369,7 @@ function getColumnsHeader () {
           </TableRow>
         </TableHead>
         <TableBody>
-            {(rowsPerPage > 0
-            ? dataFiltered .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : dataFiltered
-            ).map((row) => (
-            <StyledTableRow key={row.name}>
-              <StyledTableCell component="th" scope="row">
-                {row.name}
-              </StyledTableCell>
-              <StyledTableCell align="right">{row.calories}</StyledTableCell>
-              <StyledTableCell align="right">{row.fat}</StyledTableCell>
-              <StyledTableCell align="right">{row.carbs}</StyledTableCell>
-              <StyledTableCell align="right">{row.protein}</StyledTableCell>
-              <StyledTableCell align="right"><CustomizedMenus/></StyledTableCell> 
-
-            </StyledTableRow>
-          ))}
-
+        {getRows()}
           {emptyRows > 0 && (
             <TableRow style={{ height: 53 * emptyRows }}>
               <TableCell colSpan={6} />

@@ -54,8 +54,9 @@ export const Category = () => {
      {/* Data Grid */}
      <div className="table" style={{width:'96%' , margin:'2%'}}>
         <EnhancedTable 
-        rows={rows}
+        data={rows}
         columnsHeader = {columnsHeader}
+        tableTitle={"Category List"}
         />
         </div>
   </>)
