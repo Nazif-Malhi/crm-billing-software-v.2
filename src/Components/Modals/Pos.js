@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import { Row , Col , Container } from 'react-bootstrap';
+import { Row , Col } from 'react-bootstrap';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import styled from 'styled-components';
 import ItemsCard from '../Cards/ItemsCard';
 import { TextField } from '@mui/material';
 import InputAdornment from '@mui/material/InputAdornment';
 import {BsSearch } from 'react-icons/bs'
 import { CartItems, proItems } from '../Data/CartItems';
+import OrderTable from '../Table/OrderTable';
 
 const styleOfBase = {
   overflowY: 'scroll',
@@ -62,16 +62,21 @@ const LoadListProduct = () => {
   </>)
 }
 
-const Pos = () => {
+function Pos({val}){
   const [toggleAnimation , setToggleAnimation] = useState(false);
+ 
   const [list , setList] = useState('cat');
+
   const changeHandle = () => {
     setToggleAnimation(true)
-    if(list === 'cat'){
-      setList('pro');
+    if(val === 'cat'){
+      setList('cat');
+
+
     }
     else{
-      setList('cat');
+      setList('brand');
+
     }
   }
   
@@ -79,22 +84,29 @@ const Pos = () => {
     <div className='posContainer' style={{overflowX:'hidden'}}>
       <Row>
         <Col>
-        Left
+        <input></input>
+        
+        <div className='stylePosTable' style={{marginTop:'20px' , marginLeft:'20px'}}>
+        <OrderTable/>
+        </div>
         </Col>
         <Col>
         <div className='center' style  = {{textAlign:'center'}}>
         <Stack spacing={2} direction="row" style={{justifyContent : "center", paddingTop: '10px' , paddingBottom:'10px'}}>
-            <Button variant="contained" style={{backgroundColor:"#059BFF" , width:'200px'}}
-              onClick = {changeHandle}
+            <Button variant="contained" 
+            style={{backgroundColor:"#059BFF" , width:'200px'}}
+              
+              onClick = {() => changeHandle(val = 'cat')}
               onAnimationEnd = {() => setToggleAnimation(false)}
               toggleAnimation = {toggleAnimation}
               >
                 Category
             </Button>
             <Button variant="contained" style = {{backgroundColor:"#FF4069" , width:'200px'}}
-            onClick = {changeHandle}
+            onClick = {() => changeHandle( val = 'brand')}
             onAnimationEnd = {() => setToggleAnimation(false)}
             toggleAnimation = {toggleAnimation}
+
             >
                 Brand
             </Button>
